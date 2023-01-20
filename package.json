@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "Backend da aplicação To-Do",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "start": "npx nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Miguel Castro",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "dotenv": "^16.0.3",
+    "esm": "^3.2.25",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
   }
 }
