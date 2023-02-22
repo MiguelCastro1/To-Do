@@ -3,7 +3,7 @@
     "username": "root",
     "password": "Senha@123456",
     "database": "todo",
-    "host": "db",
+    "host": "mysqldb",
     "dialect": "mysql"
   },
   "test": {

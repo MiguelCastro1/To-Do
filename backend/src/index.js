@@ -4,7 +4,7 @@ import router from "./routes/index.js"
 
 const app = express();
 dotenv.config()
-const PORT = process.env.PORT || 3333
+const PORT = process.env.PORT_BACK || 3333
 
 app.use(router)
 
