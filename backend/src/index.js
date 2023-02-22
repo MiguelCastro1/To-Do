@@ -6,7 +6,7 @@ dotenv.config()
 const PORT = process.env.PORT || 3333
 
 app.get('/',(req,res) => [
-    res.send("Hello World Back")
+    res.send("Hello World Back and Front")
 ])
 
 app.listen(PORT, () => {
