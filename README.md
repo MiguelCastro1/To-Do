@@ -1,5 +1,5 @@
 #To-do List
 
-## Aplicação da Disciplona de Gerência de Configuração
+## Aplicação da Disciplina de Gerência de Configuração
 
-### FrontEnd
+### Projeto de desenvovimento de uma lista de tarefas usando express e react, aplicando uso de integração continua 
