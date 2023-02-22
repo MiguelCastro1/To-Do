@@ -14,7 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   ToDo.init({
-    title: DataTypes.STRING,
+    title:{
+       type: DataTypes.STRING,
+       allowNull: false
+    },
     description: DataTypes.STRING,
     isDone: DataTypes.BOOLEAN
   }, {
