@@ -1,9 +1,22 @@
-#To-do List
+<h1 align="center">
+📄<br> READ ME
+</h1>
 
-## Aplicação da Disciplona de Gerência de Configuração
+## 📚 Todo App
 
-### Projeto de desenvovimento com uso de integração continua de uma lista de tarefas usando express e react
+> Como andam suas tarefas no dia a dia? Dependendo da rotina, a organização é necessária e importante para colocar tudo em ordem com relação ao trabalho, estudos e vida pessoal. Enquanto algumas pessoas ainda gostam de anotar tudo em papel e caneta, O TodO app é um aplicativ de gerenciamento de tarefas simples que facilita a sua organização
 
-#### Desenlvedores
-    - Miguel Castrod da Silva
-    - Natalia de Sousa Freire
+---
+
+## Tecnlogias
+
+- [Express]
+- [React]
+- [Mysql]
+- [Node.js]
+- [Docker]
+
+## Desenvoledores
+
+- Migue Castro da Silva
+- Natalia de Sousa Freire
