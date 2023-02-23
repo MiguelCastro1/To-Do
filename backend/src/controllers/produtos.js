@@ -1,5 +1,5 @@
-const models = require('../models/index');
-const Sequelize = require('sequelize');
+import models from '../models/index.cjs';
+import Sequelize from 'sequelize';
 const Produto = models.ToDo;
 const Op = Sequelize.Op;
 
