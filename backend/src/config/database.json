@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": "Senha@123456",
+    "password": "root",
     "database": "todo",
-    "host": "mysqldb",
+    "host": "db",
     "dialect": "mysql"
   },
   "test": {
