@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: ./backend
+    env_file: ./.env
+    command: npm start
+    volumes:
+      - .:/usr/app
+    ports:
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    depends_on:
+      - db
+    environment:
+      MYSQL_HOST: db
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - ./frontend:/usr/app
+    env_file:
+      - ./.env 
+
+  db:
+    image: mysql:5.7
+    restart: always
+    env_file: ./.env
+    expose:
+      - ${MYSQL_DOCKER_PORT}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_HOST: "%"
+    ports:
+      - ${MYSQL_LOCAL_PORT}:${MYSQL_DOCKER_PORT}
+    volumes:
+      - mysql:/var/lib/mysql
+      - mysql_config:/etc/mysql
+      
+volumes:
+  mysql:
+  mysql_config:
