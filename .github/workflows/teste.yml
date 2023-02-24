@@ -1,10 +1,7 @@
 
 name: Teste_Workflow
-on:
-  pull_request:
-    types: [opened, reopened]
-    branches:
-      - 'master'
+on: workflow_dispatch
+
     
 jobs:
   test:
