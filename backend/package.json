@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "npx nodemon src/index.js",
-    "pretest": "docker exec todo-app_backend npx sequelize db:migrate --env test",
+    "pretest": "docker exec backend npx sequelize db:migrate --env test",
     "test": "NODE_ENV=test docker exec todo-app-backend npx jest"
   },
   "author": "Miguel Castro",
