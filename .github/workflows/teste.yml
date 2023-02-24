@@ -1,0 +1,41 @@
+
+name: Teste_Workflow
+on:
+  pull_request:
+    types: [opened, reopened]
+    branches:
+      - 'master'
+    
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v3.3.0
+        
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          
+      - name: Install dependencies
+        run: npm ci
+        working-directory: backend
+        
+      - name: Run Docker Compose
+        run: |
+          docker-compose up -d backend frontend db db_test
+          docker ps
+          
+      - name: Sleep for 10 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: "10s"
+          
+      - name: Run migrations
+        run: docker-compose exec -T backend npx sequelize db:migrate --env test
+        
+      - name: Run tests
+        run: docker-compose exec -T backend npx jest
+      
+
