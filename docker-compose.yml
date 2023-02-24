@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  web:
+  backend:
     build:
       context: ./backend
     env_file: ./.env
@@ -25,7 +25,7 @@ services:
       - ./.env 
 
   db:
-    image: mysql:5.7
+    image: mysql:8.0
     restart: always
     env_file: ./.env
     expose:
@@ -39,7 +39,22 @@ services:
     volumes:
       - mysql:/var/lib/mysql
       - mysql_config:/etc/mysql
+
+  db_test:
+    image: mysql:8.0
+    restart: always
+    env_file: ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: "todo_test"
+    ports:
+      - 3666:${MYSQL_DOCKER_PORT}
+    volumes:
+      - mysql_test:/var/lib/mysql
+      - mysql_config_test:/etc/mysql
       
 volumes:
   mysql:
   mysql_config:
+  mysql_test:
+  mysql_config_test:
