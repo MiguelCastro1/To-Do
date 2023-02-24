@@ -1,0 +1,59 @@
+name: Relatorio
+on: 
+  pull_request:
+    types: [opened, reopened]
+    branches:
+      - 'master'
+  workflow_dispatch:
+    
+jobs:
+  test:
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.operating-system }}
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v3.3.0
+        
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          
+      - name: Install dependencies
+        run: npm ci
+        working-directory: backend
+        
+      - name: Run Docker Compose
+        run: |
+          docker-compose up -d backend frontend db db_test
+          docker ps
+          
+      - name: Sleep for 10 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: "10s"
+          
+      - name: Run migrations
+        run: docker-compose exec -T backend npx sequelize db:migrate --env test
+        
+      - name: Run tests
+        run: docker-compose exec -T backend npx jest
+        
+      - name: Upload dos relatórios de erros
+        if: failure() && steps.run-tests.outcome == 'failure'
+        uses: actions/upload-artifact@v3
+        with:
+          name: tests-reports
+          path: |
+            backend/coverage
+            backend/reports
+        
+  report:
+    runs-on: ubuntu-22.04
+    needs: [test]
+    if: failure()
+    steps:
+    - name: saving reports
+      run: echo "saving reports"
