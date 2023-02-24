@@ -18,7 +18,7 @@ jobs:
       run: docker build -t web . 
       working-directory: frontend
     - name: Run Docker 
-      run: docker run  web
+      run: docker run  -d web
       working-directory: frontend
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
